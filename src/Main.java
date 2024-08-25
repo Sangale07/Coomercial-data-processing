@@ -17,4 +17,19 @@ public class Main {
         this.numberOfShares = numberOfShares;
         this.transactionDateTime = transactionDateTime;
     }
+     public String getStockSymbol() {
+         return stockSymbol;
+     }
+
+     public int getNumberOfShares() {
+         return numberOfShares;
+     }
+
+     public LocalDateTime getTransactionDateTime() {
+         return transactionDateTime;
+     }
+
+     public void setNumberOfShares(int numberOfShares) {
+         this.numberOfShares = numberOfShares;
+     }
 }
