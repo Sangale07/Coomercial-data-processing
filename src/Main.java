@@ -32,4 +32,10 @@ public class Main {
      public void setNumberOfShares(int numberOfShares) {
          this.numberOfShares = numberOfShares;
      }
+
+     public String toString() {
+         return "Stock Symbol: " + stockSymbol +
+                 ", Number of Shares: " + numberOfShares +
+                 ", Transaction Date/Time: " + transactionDateTime;
+     }
 }
