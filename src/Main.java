@@ -47,4 +47,13 @@ class StockAccount {
     public StockAccount() {
         this.sharesList = new ArrayList<>();
     }
+
+    private CompanyShares findSharesBySymbol(String stockSymbol) {
+        for (CompanyShares shares : sharesList) {
+            if (shares.getStockSymbol().equals(stockSymbol)) {
+                return shares;
+            }
+        }
+        return null;
+    }
 }
