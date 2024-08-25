@@ -56,4 +56,20 @@ class StockAccount {
         }
         return null;
     }
+    public void buyShares(String stockSymbol, int numberOfShares) {
+        LocalDateTime now = LocalDateTime.now();
+        CompanyShares existingShares = findSharesBySymbol(stockSymbol);
+
+        if (existingShares != null) {
+
+            int newNumberOfShares = existingShares.getNumberOfShares() + numberOfShares;
+            existingShares.setNumberOfShares(newNumberOfShares);
+            existingShares = new CompanyShares(stockSymbol, newNumberOfShares, now);
+        } else {
+
+            CompanyShares newShares = new CompanyShares(stockSymbol, numberOfShares, now);
+            sharesList.add(newShares);
+        }
+        System.out.println("Bought " + numberOfShares + " shares of " + stockSymbol);
+    }
 }
