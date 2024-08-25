@@ -5,6 +5,14 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Stock Account Program");
+        StockAccount stockAccount = new StockAccount();
+        stockAccount.buyShares("AAPL", 50);
+        stockAccount.buyShares("GOOGL", 30);
+        stockAccount.sellShares("AAPL", 10);
+        stockAccount.sellShares("GOOGL", 5);
+
+
+        stockAccount.printShare();
 
     }
 
@@ -71,5 +79,35 @@ class StockAccount {
             sharesList.add(newShares);
         }
         System.out.println("Bought " + numberOfShares + " shares of " + stockSymbol);
+    }
+    public void sellShares(String stockSymbol, int numberOfShares) {
+        LocalDateTime now = LocalDateTime.now();
+        CompanyShares existingShares = findSharesBySymbol(stockSymbol);
+
+        if (existingShares != null) {
+            int currentNumberOfShares = existingShares.getNumberOfShares();
+            if (numberOfShares <= currentNumberOfShares) {
+
+                int newNumberOfShares = currentNumberOfShares - numberOfShares;
+                existingShares.setNumberOfShares(newNumberOfShares);
+                existingShares = new CompanyShares(stockSymbol, newNumberOfShares, now);
+                System.out.println("Sold " + numberOfShares + " shares of " + stockSymbol);
+            } else {
+                System.out.println("Insufficient shares to sell.");
+            }
+        } else {
+            System.out.println("No shares available to sell.");
+        }
+
+
+    }
+    public void printShare(){
+        if (sharesList.isEmpty()) {
+            System.out.println("No shares available.");
+        } else {
+            for (CompanyShares shares : sharesList) {
+                System.out.println(shares);
+            }
+        }
     }
 }
